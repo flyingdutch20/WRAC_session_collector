@@ -1,0 +1,68 @@
+Selenium
+1. Logon
+classfit.com/...
+
+2. Go to MBMClasses
+https://classfit.com/index.php/c/MBMClasses
+
+div class="row-content" -> all upcoming classes
+
+- div class="date-section"
+- div class="game-row-container"
+-- div class="game-name-data"
+--- h1 a href=         -> link to the actual class
+
+3. Get all the class links
+
+4. Go to the individual classes
+https://classfit.com/index.php/c/Class/124887
+
+div class="game-head"
+h3 - name of session
+p class="description"
+
+section id="info"
+div class="row"
+
+find class="game-data" where text="Date:"
+go up find class="col-md-8"      -> date of the session
+
+div id="members"
+
+div class="member"
+h3 text=name
+
+div id="waitinglist"
+
+div class="member"
+h3 text=name
+
+div class="event-creator-sub"
+comment <!-- Instructor Data Markup -->
+h3 text=name instructor
+
+5 output
+
+
+==========================
+sample code
+
+from selenium.webdriver import Chrome
+import pandas as pd
+
+webdriver = "path_to_installed_driver_location"
+
+driver = Chrome(webdriver)
+
+    items = len(driver.find_elements_by_class_name("quote"))
+
+    total = []
+    for item in range(items):
+        quotes = driver.find_elements_by_class_name("quote")
+        for quote in quotes:
+            quote_text = quote.find_element_by_class_name('text').text
+            author = quote.find_element_by_class_name('author').text
+            new = ((quote_text,author))
+            total.append(new)
+    df = pd.DataFrame(total,columns=['quote','author'])
+    df.to_csv('quoted.csv')
