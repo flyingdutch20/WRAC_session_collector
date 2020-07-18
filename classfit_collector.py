@@ -5,10 +5,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from fpdf import FPDF
-# https://pyfpdf.readthedocs.io/en/latest/Tutorial/index.html
 import argparse
 import os
-
+import email, smtplib, ssl
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 # --------------------------------------------------
 def get_args():
@@ -29,7 +32,7 @@ def get_args():
     parser.add_argument('-p',
                         '--password',
                         metavar='password',
-                        help='Enter the password for ClassFit',
+                        help='Enter the password for ClassFit and email',
                         type=str,
                         default='')
 
@@ -42,6 +45,7 @@ def main():
     options.headless = True
     driver = webdriver.Chrome(executable_path="./drivers/chromedriver.exe", options=options)
 
+    print("Logging onto Classfit ...")
     driver.get("https://classfit.com/index.php/c/Login")
 
     username = driver.find_element_by_id("Email")
@@ -59,6 +63,7 @@ def main():
     #text = driver.find_element_by_id("leftHeader").text
     print(login_user)
 
+    print("Retrieving classes ...")
     driver.get("https://classfit.com/index.php/c/MBMClasses")
     date = driver.find_element_by_class_name("hc_date").text
     print(date)
@@ -74,6 +79,7 @@ def main():
         sessions[session_url] = session_name
         print(session_url + ' - ' + session_name)
 
+    print("Collecting individual classes and creating PDF ...")
     pdf = FPDF()
     for session in sessions.items():
         out = session[1] + ' - ' + session[0]
@@ -123,6 +129,60 @@ def main():
 
     driver.quit()
 
+    print("Creating email ...")
+    subject = "Session bookings for {}".format(date)
+    body = "Please find attached the session details for {}".format(date)
+    sender_email = "ted@wetherbyrunnersac.co.uk"
+    receivers = [andreanormington29@gmail.com,
+        emmacoster@hotmail.co.uk,
+        ianmlegg@gmail.com,
+        pauljwindle@yahoo.co.uk,
+        daveyrichard@doctors.org.uk,
+        david_yeomans@tiscali.co.uk,
+        callumdraper@yahoo.co.uk,
+        pmlandd@gmail.com,
+        garyothick@gmail.com]
+    cc_email = ["ted@wetherbyrunnersac.co.uk", "ted@bracht.uk"]
+    email_password = input("Type your password and press enter:")
+
+    # Create a multipart message and set headers
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = ", ".join(receivers)
+    message["Cc"] = ", ".join(cc_email)
+    message["Subject"] = subject
+
+    # Add body to email
+    message.attach(MIMEText(body, "plain"))
+
+    filename = date+".pdf"
+
+    # Open PDF file in binary mode
+    with open("./output/" + filename, "rb") as attachment:
+        # Add file as application/octet-stream
+        # Email client can usually download this automatically as attachment
+        part = MIMEBase("application", "octet-stream")
+        part.set_payload(attachment.read())
+
+    # Encode file in ASCII characters to send by email
+    encoders.encode_base64(part)
+
+    # Add header as key/value pair to attachment part
+    part.add_header(
+        "Content-Disposition",
+        f"attachment; filename= {filename}",
+    )
+
+    # Add attachment to message and convert message to string
+    message.attach(part)
+    text = message.as_string()
+
+    print("Sending email ...")
+    # Log in to server using secure context and send email
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("mail.wetherbyrunnersac.co.uk", 465, context=context) as server:
+        server.login(sender_email, email_password)
+        server.sendmail(sender_email, receivers + cc_email, text)
 
 if __name__ == '__main__':
     main()

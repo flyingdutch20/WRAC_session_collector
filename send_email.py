@@ -5,23 +5,34 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-subject = "An email with attachment from Python"
-body = "This is an email with attachment sent from Python"
-sender_email = "my@gmail.com"
-receiver_email = "your@gmail.com"
-password = input("Type your password and press enter:")
+subject = "Session bookings"
+body = "Please find attached the session details"
+sender_email = "ted@wetherbyrunnersac.co.uk"
+receivers = [andreanormington29@gmail.com,
+    emmacoster@hotmail.co.uk,
+    ianmlegg@gmail.com,
+    pauljwindle@yahoo.co.uk,
+    daveyrichard@doctors.org.uk,
+    david_yeomans@tiscali.co.uk,
+    callumdraper@yahoo.co.uk,
+    pmlandd@gmail.com,
+    garyothick@gmail.com]
+#cc_email = "ted@bracht.uk"
+cc_email = ["ted@wetherbyrunnersac.co.uk", "ted@bracht.uk"]
+email_password = input("Type your password and press enter:")
 
 # Create a multipart message and set headers
 message = MIMEMultipart()
 message["From"] = sender_email
-message["To"] = receiver_email
+message["To"] = ", ".join(receivers)
+message["To"] = "tedbracht@gmail.com"
+message["Cc"] = ", ".join(cc_email)
 message["Subject"] = subject
-message["Bcc"] = receiver_email  # Recommended for mass emails
 
 # Add body to email
 message.attach(MIMEText(body, "plain"))
 
-filename = "document.pdf"  # In same directory as script
+filename = "./output/15 July.pdf"  # In same directory as script
 
 # Open PDF file in binary mode
 with open(filename, "rb") as attachment:
@@ -45,6 +56,6 @@ text = message.as_string()
 
 # Log in to server using secure context and send email
 context = ssl.create_default_context()
-with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-    server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, text)
+with smtplib.SMTP_SSL("mail.wetherbyrunnersac.co.uk", 465, context=context) as server:
+    server.login(sender_email, email_password)
+    server.sendmail(sender_email, receivers + cc_email, text)
