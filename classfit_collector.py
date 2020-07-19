@@ -38,12 +38,13 @@ def get_args():
 
     return parser.parse_args()
 
-def main():
-    args = get_args()
 
+def scrape_classfit():
+    # login to ClassFit, collect the session details, output to pdf
     options = Options()
     options.headless = True
     driver = webdriver.Chrome(executable_path="./drivers/chromedriver.exe", options=options)
+#    driver = webdriver.Firefox(executable_path="./drivers/geckodriver.exe")
 
     print("Logging onto Classfit ...")
     driver.get("https://classfit.com/index.php/c/Login")
@@ -65,6 +66,7 @@ def main():
 
     print("Retrieving classes ...")
     driver.get("https://classfit.com/index.php/c/MBMClasses")
+    global date
     date = driver.find_element_by_class_name("hc_date").text
     print(date)
 
@@ -129,21 +131,26 @@ def main():
 
     driver.quit()
 
+
+def create_and_send_mail():
+    # create email and send it to the coaches
     print("Creating email ...")
     subject = "Session bookings for {}".format(date)
     body = "Please find attached the session details for {}".format(date)
+    # TODO put the email addresses in a params file and parse that
     sender_email = "ted@wetherbyrunnersac.co.uk"
-    receivers = [andreanormington29@gmail.com,
-        emmacoster@hotmail.co.uk,
-        ianmlegg@gmail.com,
-        pauljwindle@yahoo.co.uk,
-        daveyrichard@doctors.org.uk,
-        david_yeomans@tiscali.co.uk,
-        callumdraper@yahoo.co.uk,
-        pmlandd@gmail.com,
-        garyothick@gmail.com]
+    test_receivers = ["ted@bracht.uk", "tedbracht@gmail.com"]
+    receivers = ["andreanormington29@gmail.com",
+        "emmacoster@hotmail.co.uk",
+        "ianmlegg@gmail.com",
+        "pauljwindle@yahoo.co.uk",
+        "daveyrichard@doctors.org.uk",
+        "david_yeomans@tiscali.co.uk",
+        "callumdraper@yahoo.co.uk",
+        "pmlandd@gmail.com",
+        "garyothick@gmail.com"]
     cc_email = ["ted@wetherbyrunnersac.co.uk", "ted@bracht.uk"]
-    email_password = input("Type your password and press enter:")
+    email_password = args.password
 
     # Create a multipart message and set headers
     message = MIMEMultipart()
@@ -183,6 +190,15 @@ def main():
     with smtplib.SMTP_SSL("mail.wetherbyrunnersac.co.uk", 465, context=context) as server:
         server.login(sender_email, email_password)
         server.sendmail(sender_email, receivers + cc_email, text)
+
+
+def main():
+    global args
+    args = get_args()
+    scrape_classfit()
+    create_and_send_mail()
+    print("All done, thank you and tot ziens!")
+
 
 if __name__ == '__main__':
     main()
