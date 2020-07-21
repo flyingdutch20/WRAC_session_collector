@@ -36,6 +36,11 @@ def get_args():
                         type=str,
                         default='')
 
+    parser.add_argument('-t',
+                        '--test',
+                        help='Set to send test email',
+                        action='store_true')
+
     return parser.parse_args()
 
 
@@ -131,16 +136,9 @@ def scrape_classfit():
 
     driver.quit()
 
-
-def create_and_send_mail():
-    # create email and send it to the coaches
-    print("Creating email ...")
-    subject = "Session bookings for {}".format(date)
-    body = "Please find attached the session details for {}".format(date)
-    # TODO put the email addresses in a params file and parse that
-    sender_email = "ted@wetherbyrunnersac.co.uk"
-    test_receivers = ["ted@bracht.uk", "tedbracht@gmail.com"]
-    receivers = ["andreanormington29@gmail.com",
+def set_receivers():
+    # set the receivers for the email; if juniors, reduce the list
+    senior_receivers = ["andreanormington29@gmail.com",
         "emmacoster@hotmail.co.uk",
         "ianmlegg@gmail.com",
         "pauljwindle@yahoo.co.uk",
@@ -149,13 +147,29 @@ def create_and_send_mail():
         "callumdraper@yahoo.co.uk",
         "pmlandd@gmail.com",
         "garyothick@gmail.com"]
+    junior_receivers = ["andreanormington29@gmail.com",
+        "emmacoster@hotmail.co.uk",
+        "ianmlegg@gmail.com",
+        "pauljwindle@yahoo.co.uk",
+        "daveyrichard@doctors.org.uk",
+        "callumdraper@yahoo.co.uk"]
+    return junior_receivers if args.user == 'juniors' else senior_receivers
+
+def create_and_send_mail():
+    # create email and send it to the coaches
+    print("Creating email ...")
+    subject = "Session bookings for {}".format(date)
+    body = "Please find attached the session details for {}".format(date)
+    # TODO put the email addresses in a params file and parse that
+    sender_email = "ted@wetherbyrunnersac.co.uk"
+    to_email = set_receivers()
     cc_email = ["ted@wetherbyrunnersac.co.uk", "ted@bracht.uk"]
     email_password = args.password
 
     # Create a multipart message and set headers
     message = MIMEMultipart()
     message["From"] = sender_email
-    message["To"] = ", ".join(receivers)
+    message["To"] = ", ".join(to_email)
     message["Cc"] = ", ".join(cc_email)
     message["Subject"] = subject
 
@@ -186,10 +200,12 @@ def create_and_send_mail():
 
     print("Sending email ...")
     # Log in to server using secure context and send email
+    test_receivers = ["ted@bracht.uk", "tedbracht@gmail.com"]
+    receivers = test_receivers if args.test else to_email + cc_email
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL("mail.wetherbyrunnersac.co.uk", 465, context=context) as server:
         server.login(sender_email, email_password)
-        server.sendmail(sender_email, receivers + cc_email, text)
+        server.sendmail(sender_email, receivers, text)
 
 
 def main():
