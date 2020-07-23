@@ -132,7 +132,9 @@ def scrape_classfit():
 
     if not os.path.isdir('./output'):
         os.mkdir('./output')
-    pdf.output('./output/' + date + '.pdf', 'F')
+    global my_file
+    my_file = date.replace(" ", "_") + ".pdf"
+    pdf.output('./output/' + my_file, 'F')
 
     driver.quit()
 
@@ -176,10 +178,8 @@ def create_and_send_mail():
     # Add body to email
     message.attach(MIMEText(body, "plain"))
 
-    filename = date+".pdf"
-
     # Open PDF file in binary mode
-    with open("./output/" + filename, "rb") as attachment:
+    with open("./output/" + my_file, "rb") as attachment:
         # Add file as application/octet-stream
         # Email client can usually download this automatically as attachment
         part = MIMEBase("application", "octet-stream")
@@ -191,7 +191,7 @@ def create_and_send_mail():
     # Add header as key/value pair to attachment part
     part.add_header(
         "Content-Disposition",
-        f"attachment; filename= {filename}",
+        f"attachment; filename= {my_file}",
     )
 
     # Add attachment to message and convert message to string
@@ -200,7 +200,7 @@ def create_and_send_mail():
 
     print("Sending email ...")
     # Log in to server using secure context and send email
-    test_receivers = ["ted@bracht.uk", "tedbracht@gmail.com"]
+    test_receivers = ["ted@bracht.uk", "tedbracht@gmail.com", "ted@wetherbyrunnersac.co.uk"]
     receivers = test_receivers if args.test else to_email + cc_email
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL("mail.wetherbyrunnersac.co.uk", 465, context=context) as server:
