@@ -14,7 +14,7 @@ username.clear()
 username.send_keys("juniors@wetherbyrunnersac.co.uk")
 password = driver.find_element_by_id("Pass")
 password.clear()
-password.send_keys("MySecretPassword")
+password.send_keys(input("Please enter your password: "))
 submit = driver.find_element_by_id("LoginBtn").click()
 
 time.sleep(5)

@@ -19,7 +19,7 @@ receivers = [andreanormington29@gmail.com,
     garyothick@gmail.com]
 #cc_email = "ted@bracht.uk"
 cc_email = ["ted@wetherbyrunnersac.co.uk", "ted@bracht.uk"]
-email_password = input("Type your password and press enter:")
+email_password = input("Type your password and press enter: ")
 
 # Create a multipart message and set headers
 message = MIMEMultipart()

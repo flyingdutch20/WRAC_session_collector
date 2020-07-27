@@ -4,7 +4,7 @@ receiver = "ted@bracht.uk"
 body = "Hello there from Yagmail"
 filename = "output/15 July.pdf"
 
-yag = yagmail.SMTP("tedbracht@gmail.com", input("Password"))
+yag = yagmail.SMTP("tedbracht@gmail.com", input("Password: "))
 yag.send(
     to=receiver,
     subject="Yagmail test with attachment",
