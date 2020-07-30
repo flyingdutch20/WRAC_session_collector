@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel='icon' href='/images/icon-class.png' type='image/x-icon' />
+    <title>CLASSFIT</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/demo.css" />
+    <link rel="stylesheet" href="/js/form/sky-forms.css" media="all">
+    <link rel="stylesheet" href="/css/bootsrap/bootstrap.css" />
+    <link rel="stylesheet" href="/css/hover-min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <script type="text/javascript" src="/js/modernizr.custom.86080.js"></script> -->
+    <link rel="stylesheet" href="/css/bootstrap-social.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/js/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="/css/bootstrap-dialog.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200">
+    <link rel="stylesheet" href="/css/style4.css" />
+    <link rel="stylesheet" href="/css/toastr.css">
+    <link rel="stylesheet" href="/css/nav.css" />
+    <link rel="stylesheet" href="/css/login.css">
+    
+    <!-- Google Social -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="612235873313-dptkmc82lveh78ugpkhhhoo6tk09hf02.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script type="text/JavaScript">
+        var googleUser = {};
+        var startApp = function() {
+            gapi.load('auth2', function() {
+                // Retrieve the singleton for the GoogleAuth library and set up the client.
+                auth2 = gapi.auth2.init({
+                    client_id: '612235873313-dptkmc82lveh78ugpkhhhoo6tk09hf02.apps.googleusercontent.com',
+                    cookiepolicy: 'single_host_origin',
+                    scope: 'https://www.googleapis.com/auth/plus.login'
+                    // Request scopes in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+                attachSignin(document.getElementById('customBtn'));
+            });
+        };
+
+        function attachSignin(element) {
+            auth2.attachClickHandler(element, {},
+                function(googleUser) {
+                    var accessToken = (googleUser && googleUser.getAuthResponse().id_token) ? googleUser.getAuthResponse().id_token : "";
+                    if (accessToken) {
+                        var PostData = {
+                                Token: accessToken,
+                                source: "web",
+                                Lat: LocationObj.Lat ? LocationObj.Lat : 0,
+                                Long: LocationObj.Long ? LocationObj.Long : 0,
+                                GcmReg: NotificationObj.PlyTkn ? NotificationObj.PlyTkn : "",
+                            },
+                            result = {},
+                            callback = function (result) {
+                                AuthObj.handleSocialResponse(result);
+                            };
+                        PostData = "social=" + JSON.stringify(PostData);
+                        RequestObj.sendPostRequest('/index.php/c/Socialgoogle', true, PostData, false, callback);
+                    } else {
+                        console.log("Access Token Error");
+                    }
+                },
+                function(error) {
+                    //alert(JSON.stringify(error, undefined, 2));
+                }
+            );
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    
+    <style type="text/css">
+        #customBtn {
+            display: inline-block;
+            background: white;
+            color: #444;
+            border: 2px solid white;
+            border-radius: 4px;
+            box-shadow: none;
+            width: 100%;
+            white-space: nowrap;
+            text-align: center;
+            height: 32px;
+            padding: 0;
+            line-height: 32px;
+        }
+
+        #customBtn:hover {
+            cursor: pointer;
+        }
+
+        span.label {
+            font-family: serif;
+            font-weight: normal;
+        }
+
+        span.icon {
+            background: url('/images/g-normal.png') transparent center no-repeat;
+            background-size: contain;
+            display: inline-block;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: -2px
+        }
+
+        span.buttonText {
+            vertical-align: middle;
+            padding-left: 2px;
+            padding-right: 3px;
+            position: relative;
+            top: -1px;
+            font-size: 13px;
+            font-weight: normal;
+            font-family: inherit;
+        }
+    </style>
+
+    </head>
+
+<body id="page">
+    <section id="page_content">
+        <nav class="navbar navbar-default navbar-fixed-top" id="leNav" style="">
+            <div class="container-fluid noPad">
+                <div class="navbar-header">
+                    <div class="nav-logo text-center">
+                        <a class="navbar-brand" href="/index.php/c/Home" style="text-align: center; padding:6px; width:100%!important;height:100%;">
+                            <img id="logoPos" src="/images/ClassFit-Logo.png" alt="Classfit" width="50" height="50" style="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid" style="">
+            <div class="row" style="">
+                <!-- log-in form -->
+                <div class="sgin_in col-xs-12">
+                    <div class="login-part" id="login-section-goto" >
+                        <div class="logo text-center">
+                            <h3>Login</h3>
+                        </div>
+                        <form data-toggle="validator" style="box-shadow: none;" autocomplete="nope" class="log-reg-form" id="LoginFrm" error-mess="" method="post" action="">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <section class="form-group">
+                                        <input type="email" name="Email" id="Email" class="ChkReqLog form-control input-lg email" placeholder="Email address">
+                                        <div class="warning_message" style="display: none;">
+                                            <span class="warning-icon ">
+                                                <img src="/images/warning-icon.png" alt="warning-icon">
+                                            </span>
+                                            <span class="tooltip-message">
+                                                <span style=""></span>
+                                            </span>
+                                        </div>
+                                        <b class="tooltip tooltip-bottom-right" style="color: #39b590;">*Please enter valid email address</b>
+                                    </section>
+                                </div>
+                                <div class="col-xs-12">
+                                    <section class="form-group">
+                                        <input type="password" name="Pass" id="Pass" class="input-lg ChkReqLog form-control password" placeholder="Password" maxlength="30">
+                                        <div class="warning_message" style="display: none;">
+                                            <span class="warning-icon ">
+                                                <img src="/images/warning-icon.png" alt="warning-icon">
+                                            </span>
+                                            <span class="tooltip-message">
+                                                <span style=""></span>
+                                            </span>
+                                        </div>
+                                        <b class="tooltip tooltip-bottom-right" style="color: #39b590;">*Password is required</b>
+                                    </section>
+                                </div>
+                                <div class="col-xs-12 text-center">
+                                    <div class="col-xs-12 noPad res-left" style="">
+                                        <a href="/index.php/c/ForgetPass" class="modal-opener Forgot-Password">FORGOT PASSWORD?</a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 res-screen" style="margin: 30px 0 20px;">
+                                    <button class="btn btn-default links form-btn" type="button" id="LoginBtn" onclick="AuthObj.prepareLogin()">Login</button>
+                                </div>
+                                <div class="col-xs-12 col-btn-res res-screen" style="">
+                                    <button id="signBtn" type="button" class="btn  form-btn registration-goto
+									 btn-default links" onclick="UtilObj.ShowRegisterSection()">SIGN UP</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="fb-root"></div>
+                        <div class="row" style="margin: 20px auto 30px;">
+                            <div class="social-login-btns-container" style="">
+                                <div class="col-md-6 col-xs-12 nopdL face-btn">
+                                    <button class="btn btn-primary" type="button" onclick="AuthObj.CheckLoginState();">
+                                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span>Continue with Facebook</span>
+                                    </button>
+                                </div>
+                                <!-- In the callback, you would hide the gSignInWrapper element on a
+									  successful sign in -->
+                                <div class="col-md-6 col-xs-12 nopdR">
+                                    <div id="gSignInWrapper">
+                                        <div id="customBtn" class="customGPlusSignIn">
+                                            <span class="icon"></span>
+                                            <span class="buttonText" data-theme="dark">CONTINUE WITH GMAIL</span>
+                                        </div>
+                                    </div>
+                                    <div id="name"></div>
+                                    <script>
+                                        startApp();
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- registration form -->
+                <div class="sgin_up col-xs-12">
+                    <div class=" reg-part" id="register-section-goto" style="display:none;">
+                        <div class="logo text-center">
+                            <h3>Sign up</h3>
+                        </div>
+                        <form data-toggle="validator" autocomplete="nope" style="box-shadow: none;" class="sign-in-regs  fxheight log-reg-form" id="RegFrm" method="post" action="/index.php/c/Register">
+                            <!-- First & Last Name -->
+                            <div class="row">
+                                                                <section class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="First name" name="FName" maxlength="20" id="FName" onfocusout="RenderObj.FirstLetterToUpper($(this))" class="input-lg ChkReqReg form-control" value="">
+                                        <div class="warning_message" style="display: none;">
+                                            <span class="warning-icon ">
+                                                <img src="/images/warning-icon.png" alt="warning-icon">
+                                            </span>
+                                            <span class="tooltip-message">
+                                                <span style=""></span>
+                                            </span>
+                                        </div>
+                                        <b class="tooltip tooltip-bottom-right" style="color: #39b590;">First name can only consist of English alphabet</b>
+                                    </div>
+                                </section>
+                                <section class="col-sm-6">
+                                    <div class="form-group lastName">
+                                        <input type="text" placeholder="Last name" name="LName" maxlength="20" id="LName" onfocusout="RenderObj.FirstLetterToUpper($(this))" class="input-lg ChkReqReg form-control" value="">
+                                        <div class="warning_message" style="display: none;">
+                                            <span class="warning-icon ">
+                                                <img src="/images/warning-icon.png" alt="warning-icon">
+                                            </span>
+                                            <span class="tooltip-message">
+                                                <span style=""></span>
+                                            </span>
+                                        </div>
+                                        <b class="tooltip tooltip-bottom-right" style="color: #39b590;">Last name can only consist of English alphabet & numbers</b>
+                                    </div>
+                                </section>
+                            </div>
+
+                            
+                            <!-- Email -->
+                            <div class="row">
+                                <section class="col-xs-12">
+                                    <div class="form-group emailInput">
+                                        <input type="email" placeholder="Email address" name="EmailReg" maxlength="50" id="EmailReg" onfocusout="RenderObj.FirstLetterToUpper($(this))" class="ChkReqReg form-control input-lg" value="">
+                                        <div class="warning_message" style="display: none;">
+                                            <span class="warning-icon ">
+                                                <img src="/images/warning-icon.png" alt="warning-icon">
+                                            </span>
+                                            <span class="tooltip-message">
+                                                <span style=""></span>
+                                            </span>
+                                        </div>
+                                        <b class="tooltip tooltip-bottom-right" style="color: #39b590;">Please enter valid Email contain "@" ".com"</b>
+                                    </div>
+                                </section>
+                            </div>
+                            
+                            <!-- Password -->
+                            <div class="row">
+                                <section class="col-xs-12">
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Password" name="PassReg" id="PassReg" class="input-lg ChkReqReg form-control" maxlength="30">
+                                        <div class="warning_message" style="display: none;">
+                                            <span class="warning-icon ">
+                                                <img src="/images/warning-icon.png" alt="warning-icon">
+                                            </span>
+                                            <span class="tooltip-message">
+                                                <span style=""></span>
+                                            </span>
+                                        </div>
+                                        <b class="tooltip tooltip-bottom-right" style="color: #39b590;">The password is required</b>
+                                    </div>
+                                </section>
+                            </div>
+                            
+                            <!-- Re-type Password -->
+                            <div class="row">
+                                <section class="col-xs-12">
+                                    <div class="form-group">
+                                        <input type="password" name="RePassReg" id="RePassReg" class="input-lg ChkReqReg form-control password" placeholder="Retype password" maxlength="30" >
+                                        <div class="warning_message" style="display: none;">
+                                            <span class="warning-icon ">
+                                                <img src="/images/warning-icon.png" alt="warning-icon">
+                                            </span>
+                                            <span class="tooltip-message">
+                                                <span style=""></span>
+                                            </span>
+                                        </div>
+                                        <b class="tooltip tooltip-bottom-right" style="color: #39b590;">The Retype password is required</b>
+                                    </div>
+                                </section>
+                            </div>
+                            
+                            <!-- BirthDate & Gender -->
+                            <div class="row">
+                                <section class="col-xs-12">
+                                    <div class="form-group dateBirth">
+                                        <div class="custom-select dayes-select">
+                                            <select name='day' class="input-lg form-control" id='dayDB'>
+                                                <option value='0' selected>Birthdate</option>
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
+                                                <option value='5'>5</option>
+                                                <option value='6'>6</option>
+                                                <option value='7'>7</option>
+                                                <option value='8'>8</option>
+                                                <option value='9'>9</option>
+                                                <option value='10'>10</option>
+                                                <option value='11'>11</option>
+                                                <option value='12'>12</option>
+                                                <option value='13'>13</option>
+                                                <option value='14'>14</option>
+                                                <option value='15'>15</option>
+                                                <option value='16'>16</option>
+                                                <option value='17'>17</option>
+                                                <option value='18'>18</option>
+                                                <option value='19'>19</option>
+                                                <option value='20'>20</option>
+                                                <option value='21'>21</option>
+                                                <option value='22'>22</option>
+                                                <option value='23'>23</option>
+                                                <option value='24'>24</option>
+                                                <option value='25'>25</option>
+                                                <option value='26'>26</option>
+                                                <option value='27'>27</option>
+                                                <option value='28'>28</option>
+                                                <option value='29'>29</option>
+                                                <option value='30'>30</option>
+                                                <option value='31'>31</option>
+                                            </select>
+                                            <div class="warning_message" style="display: none;">
+                                                <span class="warning-icon ">
+                                                    <img src="/images/warning-icon.png" alt="warning-icon">
+                                                </span>
+                                                <span class="tooltip-message">
+                                                    <span style=""></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="custom-select monthes-select">
+                                            <select name='month' class="input-lg form-control" id='montDB'>
+                                                <option disabled="" selected="" value="">Month</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                            <div class="warning_message" style="display: none;">
+                                                <span class="warning-icon ">
+                                                    <img src="/images/warning-icon.png" alt="warning-icon">
+                                                </span>
+                                                <span class="tooltip-message">
+                                                    <span style=""></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                                                                <div class="custom-select years-select">
+                                            <select name='year' class="input-lg form-control" id='yearDB'>
+                                                <option disabled="" selected="" value=''>Year</option>
+                                                                                                                                                <option value="2008">2008</option>
+                                                                                                <option value="2007">2007</option>
+                                                                                                <option value="2006">2006</option>
+                                                                                                <option value="2005">2005</option>
+                                                                                                <option value="2004">2004</option>
+                                                                                                <option value="2003">2003</option>
+                                                                                                <option value="2002">2002</option>
+                                                                                                <option value="2001">2001</option>
+                                                                                                <option value="2000">2000</option>
+                                                                                                <option value="1999">1999</option>
+                                                                                                <option value="1998">1998</option>
+                                                                                                <option value="1997">1997</option>
+                                                                                                <option value="1996">1996</option>
+                                                                                                <option value="1995">1995</option>
+                                                                                                <option value="1994">1994</option>
+                                                                                                <option value="1993">1993</option>
+                                                                                                <option value="1992">1992</option>
+                                                                                                <option value="1991">1991</option>
+                                                                                                <option value="1990">1990</option>
+                                                                                                <option value="1989">1989</option>
+                                                                                                <option value="1988">1988</option>
+                                                                                                <option value="1987">1987</option>
+                                                                                                <option value="1986">1986</option>
+                                                                                                <option value="1985">1985</option>
+                                                                                                <option value="1984">1984</option>
+                                                                                                <option value="1983">1983</option>
+                                                                                                <option value="1982">1982</option>
+                                                                                                <option value="1981">1981</option>
+                                                                                                <option value="1980">1980</option>
+                                                                                                <option value="1979">1979</option>
+                                                                                                <option value="1978">1978</option>
+                                                                                                <option value="1977">1977</option>
+                                                                                                <option value="1976">1976</option>
+                                                                                                <option value="1975">1975</option>
+                                                                                                <option value="1974">1974</option>
+                                                                                                <option value="1973">1973</option>
+                                                                                                <option value="1972">1972</option>
+                                                                                                <option value="1971">1971</option>
+                                                                                                <option value="1970">1970</option>
+                                                                                                <option value="1969">1969</option>
+                                                                                                <option value="1968">1968</option>
+                                                                                                <option value="1967">1967</option>
+                                                                                                <option value="1966">1966</option>
+                                                                                                <option value="1965">1965</option>
+                                                                                                <option value="1964">1964</option>
+                                                                                                <option value="1963">1963</option>
+                                                                                                <option value="1962">1962</option>
+                                                                                                <option value="1961">1961</option>
+                                                                                                <option value="1960">1960</option>
+                                                                                                <option value="1959">1959</option>
+                                                                                                <option value="1958">1958</option>
+                                                                                                <option value="1957">1957</option>
+                                                                                                <option value="1956">1956</option>
+                                                                                                <option value="1955">1955</option>
+                                                                                                <option value="1954">1954</option>
+                                                                                                <option value="1953">1953</option>
+                                                                                                <option value="1952">1952</option>
+                                                                                                <option value="1951">1951</option>
+                                                                                                <option value="1950">1950</option>
+                                                                                                <option value="1949">1949</option>
+                                                                                                <option value="1948">1948</option>
+                                                                                                <option value="1947">1947</option>
+                                                                                                <option value="1946">1946</option>
+                                                                                                <option value="1945">1945</option>
+                                                                                                <option value="1944">1944</option>
+                                                                                                <option value="1943">1943</option>
+                                                                                                <option value="1942">1942</option>
+                                                                                                <option value="1941">1941</option>
+                                                                                                <option value="1940">1940</option>
+                                                                                                <option value="1939">1939</option>
+                                                                                                <option value="1938">1938</option>
+                                                                                                <option value="1937">1937</option>
+                                                                                                <option value="1936">1936</option>
+                                                                                                <option value="1935">1935</option>
+                                                                                                <option value="1934">1934</option>
+                                                                                                <option value="1933">1933</option>
+                                                                                                <option value="1932">1932</option>
+                                                                                                <option value="1931">1931</option>
+                                                                                                <option value="1930">1930</option>
+                                                                                                <option value="1929">1929</option>
+                                                                                                <option value="1928">1928</option>
+                                                                                                <option value="1927">1927</option>
+                                                                                                <option value="1926">1926</option>
+                                                                                                <option value="1925">1925</option>
+                                                                                                <option value="1924">1924</option>
+                                                                                                <option value="1923">1923</option>
+                                                                                                <option value="1922">1922</option>
+                                                                                                <option value="1921">1921</option>
+                                                                                                <option value="1920">1920</option>
+                                                                                                <option value="1919">1919</option>
+                                                                                                <option value="1918">1918</option>
+                                                                                                <option value="1917">1917</option>
+                                                                                                <option value="1916">1916</option>
+                                                                                                <option value="1915">1915</option>
+                                                                                                <option value="1914">1914</option>
+                                                                                                <option value="1913">1913</option>
+                                                                                                <option value="1912">1912</option>
+                                                                                                <option value="1911">1911</option>
+                                                                                                <option value="1910">1910</option>
+                                                                                                <option value="1909">1909</option>
+                                                                                                <option value="1908">1908</option>
+                                                                                                <option value="1907">1907</option>
+                                                                                                <option value="1906">1906</option>
+                                                                                                <option value="1905">1905</option>
+                                                                                                <option value="1904">1904</option>
+                                                                                                <option value="1903">1903</option>
+                                                                                                <option value="1902">1902</option>
+                                                                                                <option value="1901">1901</option>
+                                                                                                <option value="1900">1900</option>
+                                                                                            </select>
+                                            <div class="warning_message" style="display: none;">
+                                                <span class="warning-icon ">
+                                                    <img src="/images/warning-icon.png" alt="warning-icon">
+                                                </span>
+                                                <span class="tooltip-message">
+                                                    <span style=""></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                
+                            <!-- Business -->
+                            
+                                <section class="col-xs-12">
+                                    <div class="form-group emailInput">
+                                        <input type="email" placeholder="Business name  (Optional)" name="business" maxlength="30" id="business" class="ChkReqReg form-control input-lg" value="">
+                                        <div class="warning_message" style="display: none;">
+                                            <span class="warning-icon ">
+                                                <img src="/images/warning-icon.png" alt="warning-icon">
+                                            </span>
+                                            <span class="tooltip-message">
+                                                <span style=""></span>
+                                            </span>
+                                        </div>
+                                        <b class="tooltip tooltip-bottom-right" style="color: #39b590;">Please enter valid Business"</b>
+                                    </div>
+                                </section>
+                            
+                                <section class="col-xs-12">
+                                    <div class="form-group">
+                                        <div class="custom-select tooltap-select">
+                                            <select id="Gdr" name="Gdr" class="ChkReqReg input-lg form-control">
+                                                <option class="default-select" disabled="" selected="" disabled="" value="">Gender</option>
+                                                <option value="m">Male</option>
+                                                <option value="f">Female</option>
+                                            </select>
+                                            <div class="warning_message" style="display: none;">
+                                                <span class="warning-icon ">
+                                                    <img src="/images/warning-icon.png" alt="warning-icon">
+                                                </span>
+                                                <span class="tooltip-message">
+                                                    <span style=""></span>
+                                                </span>
+                                            </div>
+                                            <b class="tooltip tooltip-bottom-right" style="color: #39b590;">Gender is required</b>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            
+                            <!-- Country -->
+                            <div class="row">
+                                <section class="col-xs-12">
+                                    <div class="form-group">
+                                        <div class="custom-select tooltap-select">
+                                            <select name="CountryID" id="CountryID" class="ChkReqReg input-lg form-control" onchange="UtilObj.CountryChange(this)">
+                                                <option disabled="" selected="" value="">Country</option>
+                                                <option value="1" Iso="AF">Afghanistan</option><option value="2" Iso="AX">Aland Islands</option><option value="3" Iso="AL">Albania</option><option value="4" Iso="DZ">Algeria</option><option value="5" Iso="AS">American Samoa</option><option value="6" Iso="AD">Andorra</option><option value="7" Iso="AO">Angola</option><option value="8" Iso="AI">Anguilla</option><option value="9" Iso="AQ">Antarctica</option><option value="10" Iso="AG">Antigua and Barbuda</option><option value="11" Iso="AR">Argentina</option><option value="12" Iso="AM">Armenia</option><option value="13" Iso="AW">Aruba</option><option value="14" Iso="AU">Australia</option><option value="15" Iso="AT">Austria</option><option value="16" Iso="AZ">Azerbaijan</option><option value="17" Iso="BS">Bahamas</option><option value="18" Iso="BH">Bahrain</option><option value="19" Iso="BD">Bangladesh</option><option value="20" Iso="BB">Barbados</option><option value="21" Iso="BY">Belarus</option><option value="22" Iso="BE">Belgium</option><option value="23" Iso="BZ">Belize</option><option value="24" Iso="BJ">Benin</option><option value="25" Iso="BM">Bermuda</option><option value="26" Iso="BT">Bhutan</option><option value="27" Iso="BO">Bolivia, Plurinational State of</option><option value="28" Iso="BQ">Bonaire, Sint Eustatius and Saba</option><option value="29" Iso="BA">Bosnia and Herzegovina</option><option value="30" Iso="BW">Botswana</option><option value="31" Iso="BV">Bouvet Island</option><option value="32" Iso="BR">Brazil</option><option value="33" Iso="IO">British Indian Ocean Territory</option><option value="34" Iso="BN">Brunei Darussalam</option><option value="35" Iso="BG">Bulgaria</option><option value="36" Iso="BF">Burkina Faso</option><option value="37" Iso="BI">Burundi</option><option value="38" Iso="KH">Cambodia</option><option value="39" Iso="CM">Cameroon</option><option value="40" Iso="CA">Canada</option><option value="41" Iso="CV">Cape Verde</option><option value="42" Iso="KY">Cayman Islands</option><option value="43" Iso="CF">Central African Republic</option><option value="44" Iso="TD">Chad</option><option value="45" Iso="CL">Chile</option><option value="46" Iso="CN">China</option><option value="47" Iso="CX">Christmas Island</option><option value="48" Iso="CC">Cocos (Keeling) Islands</option><option value="49" Iso="CO">Colombia</option><option value="50" Iso="KM">Comoros</option><option value="51" Iso="CG">Congo</option><option value="52" Iso="CD">Congo, The Democratic Republic of the</option><option value="53" Iso="CK">Cook Islands</option><option value="54" Iso="CR">Costa Rica</option><option value="55" Iso="CI">Cote d'Ivoire</option><option value="56" Iso="HR">Croatia</option><option value="57" Iso="CU">Cuba</option><option value="58" Iso="CW">Curacao</option><option value="59" Iso="CY">Cyprus</option><option value="60" Iso="CZ">Czech Republic</option><option value="61" Iso="DK">Denmark</option><option value="62" Iso="DJ">Djibouti</option><option value="63" Iso="DM">Dominica</option><option value="64" Iso="DO">Dominican Republic</option><option value="65" Iso="EC">Ecuador</option><option value="66" Iso="EG">Egypt</option><option value="67" Iso="SV">El Salvador</option><option value="68" Iso="GQ">Equatorial Guinea</option><option value="69" Iso="ER">Eritrea</option><option value="70" Iso="EE">Estonia</option><option value="71" Iso="ET">Ethiopia</option><option value="72" Iso="FK">Falkland Islands (Malvinas)</option><option value="73" Iso="FO">Faroe Islands</option><option value="74" Iso="FJ">Fiji</option><option value="75" Iso="FI">Finland</option><option value="76" Iso="FR">France</option><option value="77" Iso="GF">French Guiana</option><option value="78" Iso="PF">French Polynesia</option><option value="79" Iso="TF">French Southern Territories</option><option value="80" Iso="GA">Gabon</option><option value="81" Iso="GM">Gambia</option><option value="82" Iso="GE">Georgia</option><option value="83" Iso="DE">Germany</option><option value="84" Iso="GH">Ghana</option><option value="85" Iso="GI">Gibraltar</option><option value="86" Iso="GR">Greece</option><option value="87" Iso="GL">Greenland</option><option value="88" Iso="GD">Grenada</option><option value="89" Iso="GP">Guadeloupe</option><option value="90" Iso="GU">Guam</option><option value="91" Iso="GT">Guatemala</option><option value="92" Iso="GG">Guernsey</option><option value="93" Iso="GN">Guinea</option><option value="94" Iso="GW">Guinea-Bissau</option><option value="95" Iso="GY">Guyana</option><option value="96" Iso="HT">Haiti</option><option value="97" Iso="HM">Heard Island and McDonald Islands</option><option value="98" Iso="VA">Holy See (Vatican City State)</option><option value="99" Iso="HN">Honduras</option><option value="100" Iso="HK">Hong Kong</option><option value="101" Iso="HU">Hungary</option><option value="102" Iso="IS">Iceland</option><option value="103" Iso="IN">India</option><option value="104" Iso="co">Indonesia</option><option value="105" Iso="IR">Iran, Islamic Republic of</option><option value="106" Iso="IQ">Iraq</option><option value="107" Iso="IE">Ireland</option><option value="108" Iso="IM">Isle of Man</option><option value="109" Iso="IL">Israel</option><option value="110" Iso="IT">Italy</option><option value="111" Iso="JM">Jamaica</option><option value="112" Iso="JP">Japan</option><option value="113" Iso="JE">Jersey</option><option value="114" Iso="JO">Jordan</option><option value="115" Iso="KZ">Kazakhstan</option><option value="116" Iso="KE">Kenya</option><option value="117" Iso="KI">Kiribati</option><option value="118" Iso="KP">Korea, Democratic People's Republic of</option><option value="119" Iso="KR">Korea, Republic of</option><option value="120" Iso="KW">Kuwait</option><option value="121" Iso="KG">Kyrgyzstan</option><option value="122" Iso="LA">Lao People's Democratic Republic</option><option value="123" Iso="LV">Latvia</option><option value="124" Iso="LB">Lebanon</option><option value="125" Iso="LS">Lesotho</option><option value="126" Iso="LR">Liberia</option><option value="127" Iso="LY">Libyan Arab Jamahiriya</option><option value="128" Iso="LI">Liechtenstein</option><option value="129" Iso="LT">Lithuania</option><option value="130" Iso="LU">Luxembourg</option><option value="131" Iso="MO">Macao</option><option value="132" Iso="MK">Macedonia, The Former Yugoslav Republic of</option><option value="133" Iso="MG">Madagascar</option><option value="134" Iso="MW">Malawi</option><option value="135" Iso="MY">Malaysia</option><option value="136" Iso="MV">Maldives</option><option value="137" Iso="ML">Mali</option><option value="138" Iso="MT">Malta</option><option value="139" Iso="MH">Marshall Islands</option><option value="140" Iso="MQ">Martinique</option><option value="141" Iso="MR">Mauritania</option><option value="142" Iso="MU">Mauritius</option><option value="143" Iso="YT">Mayotte</option><option value="144" Iso="MX">Mexico</option><option value="145" Iso="FM">Micronesia, Federated States of</option><option value="146" Iso="MD">Moldova, Republic of</option><option value="147" Iso="MC">Monaco</option><option value="148" Iso="MN">Mongolia</option><option value="149" Iso="ME">Montenegro</option><option value="150" Iso="MS">Montserrat</option><option value="151" Iso="MA">Morocco</option><option value="152" Iso="MZ">Mozambique</option><option value="153" Iso="MM">Myanmar</option><option value="154" Iso="NA">Namibia</option><option value="155" Iso="NR">Nauru</option><option value="156" Iso="NP">Nepal</option><option value="157" Iso="NL">Netherlands</option><option value="158" Iso="NC">New Caledonia</option><option value="159" Iso="NZ">New Zealand</option><option value="160" Iso="NI">Nicaragua</option><option value="161" Iso="NE">Niger</option><option value="162" Iso="NG">Nigeria</option><option value="163" Iso="NU">Niue</option><option value="164" Iso="NF">Norfolk Island</option><option value="165" Iso="MP">Northern Mariana Islands</option><option value="166" Iso="NO">Norway</option><option value="167" Iso="PS">Occupied Palestinian Territory</option><option value="168" Iso="OM">Oman</option><option value="169" Iso="PK">Pakistan</option><option value="170" Iso="PW">Palau</option><option value="171" Iso="PA">Panama</option><option value="172" Iso="PG">Papua New Guinea</option><option value="173" Iso="PY">Paraguay</option><option value="174" Iso="PE">Peru</option><option value="175" Iso="PH">Philippines</option><option value="176" Iso="PN">Pitcairn</option><option value="177" Iso="PL">Poland</option><option value="178" Iso="PT">Portugal</option><option value="179" Iso="PR">Puerto Rico</option><option value="180" Iso="QA">Qatar</option><option value="181" Iso="RE">Reunion</option><option value="182" Iso="RO">Romania</option><option value="183" Iso="RU">Russia</option><option value="184" Iso="RW">Rwanda</option><option value="185" Iso="BL">Saint Barthelemy</option><option value="186" Iso="SH">Saint Helena, Ascension and Tristan da Cunha</option><option value="187" Iso="KN">Saint Kitts and Nevis</option><option value="188" Iso="LC">Saint Lucia</option><option value="189" Iso="MF">Saint Martin (French part)</option><option value="190" Iso="PM">Saint Pierre and Miquelon</option><option value="191" Iso="VC">Saint Vincent and The Grenadines</option><option value="192" Iso="WS">Samoa</option><option value="193" Iso="SM">San Marino</option><option value="194" Iso="ST">Sao Tome and Principe</option><option value="195" Iso="SA">Saudi Arabia</option><option value="196" Iso="SN">Senegal</option><option value="197" Iso="RS">Serbia</option><option value="198" Iso="SC">Seychelles</option><option value="199" Iso="SL">Sierra Leone</option><option value="200" Iso="SG">Singapore</option><option value="201" Iso="SX">Sint Maarten (Dutch part)</option><option value="202" Iso="SK">Slovakia</option><option value="203" Iso="SI">Slovenia</option><option value="204" Iso="SB">Solomon Islands</option><option value="205" Iso="SO">Somalia</option><option value="206" Iso="ZA">South Africa</option><option value="207" Iso="GS">South Georgia and the South Sandwich Islands</option><option value="208" Iso="SS">South Sudan</option><option value="209" Iso="ES">Spain</option><option value="210" Iso="LK">Sri Lanka</option><option value="211" Iso="SD">Sudan</option><option value="212" Iso="SR">Suriname</option><option value="213" Iso="SJ">Svalbard and Jan Mayen</option><option value="214" Iso="SZ">Swaziland</option><option value="215" Iso="SE">Sweden</option><option value="216" Iso="CH">Switzerland</option><option value="217" Iso="SY">Syrian Arab Republic</option><option value="218" Iso="TW">Taiwan, Province of China</option><option value="219" Iso="TJ">Tajikistan</option><option value="220" Iso="TZ">Tanzania, United Republic of</option><option value="221" Iso="TH">Thailand</option><option value="222" Iso="TL">Timor-Leste</option><option value="223" Iso="TG">Togo</option><option value="224" Iso="TK">Tokelau</option><option value="225" Iso="TO">Tonga</option><option value="226" Iso="TT">Trincountry_idad and Tobago</option><option value="227" Iso="TN">Tunisia</option><option value="228" Iso="TR">Turkey</option><option value="229" Iso="TM">Turkmenistan</option><option value="230" Iso="TC">Turks and Caicos Islands</option><option value="231" Iso="TV">Tuvalu</option><option value="232" Iso="UG">Uganda</option><option value="233" Iso="UA">Ukraine</option><option value="234" Iso="AE">United Arab Emirates</option><option value="235" Iso="UK">United Kingdom</option><option value="236" Iso="US">United States</option><option value="237" Iso="UM">United States Minor Outlying Islands</option><option value="238" Iso="UY">Uruguay</option><option value="239" Iso="UZ">Uzbekistan</option><option value="240" Iso="VU">Vanuatu</option><option value="241" Iso="VE">Venezuela, Bolivarian Republic of</option><option value="242" Iso="VN">Viet Nam</option><option value="243" Iso="VG">Virgin Islands, British</option><option value="244" Iso="VI">Virgin Islands, U.S.</option><option value="245" Iso="WF">Wallis and Futuna</option><option value="246" Iso="EH">Western Sahara</option><option value="247" Iso="YE">Yemen</option><option value="248" Iso="ZM">Zambia</option><option value="249" Iso="ZW">Zimbabwe</option>                                            </select>
+                                            <div class="warning_message" style="display: none;">
+                                                <span class="warning-icon ">
+                                                    <img src="/images/warning-icon.png" alt="warning-icon">
+                                                </span>
+                                                <span class="tooltip-message">
+                                                    <span style=""></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </section>
+                            </div>
+                            
+                            <!-- City -->
+                            <div class="row">
+                                <section class="col-xs-12 CitySec" hidden>
+                                    <div class="form-group" id="cityDiv" style="position: relative;">
+                                        <input type="text" name="CityName" id="CityName" onkeyup="UtilObj.CityNameKeyup(event)" onblur="UtilObj.CityNameBlur()" maxlength="50" class="input-lg form-control" placeholder="Type Your City Name">
+                                        <input class="input-lg form-control" type="hidden" name="CtyID" id="CtyID" value="0">
+                                    </div>
+                                </section>
+                            </div>
+                            
+                            <!-- Terms & Conditions -->
+                            <div class="row">
+                                <section class="hide-terms-of-service">
+                                    <div class="col-md-12 noPad">
+                                        <label class="checkbox text-left">
+                                            <input type="checkbox" name="checkbox" id="TermChk"><i></i>I agree to the <a class="terms-link" href="#GmTermModal" data-toggle="modal">Terms of Service</a>
+                                        </label>
+                                    </div>
+                                </section>
+                            </div>
+                            
+                            <!-- Sign up button -->
+                            <div class="row">
+                                <div class="col-xs-12 sign-margin">
+                                    <button class="btn btn-default links form-btn" id="Regbtn" type="button" onclick="AuthObj.prepareRegister()">Sign up</button>
+                                </div>
+                                <div class="col-xs-12 " style="">
+                                    <button type="button" class="btn btn-default links form-btn login-goto" onclick="UtilObj.ShowLoginSection()" type="button" style="white-space: normal;">Back to login</button>
+                                </div>
+                            </div>
+                                                        <input type="hidden" name="FrReq" id="FrReq" value="">
+                            <input type="hidden" name="FrReqFrm" id="FrReqFrm" value="">
+                        </form>
+                    </div>
+                </div>
+                <form action="" class="sky-form" style="display:none;">
+                    <footer class="fxheightfoter"></footer>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- Terms of Service -->
+        <div class="modal fade" id="GmTermModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Terms of Service</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>1 - Terms of Service</li>
+                            <li>2 - Terms of Service</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="AgreeTerm" data-dismiss="modal">I agree</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="se-pre-con" style="display: none;">
+            <img style="width:200px" src="/images/New_classfit_gif_2.gif">
+        </div>
+    </section>
+        <!-- jQuery -->
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/form/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/onload.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/css/bootsrap/bootstrap.min.js"></script>
+    <script src="/js/jquery.ui.timepicker.js"></script>
+    <script src="/js/bootstrap-dialog.js"></script>
+    <script src="/js/jquery.prettyPhoto.js"></script>
+    <script src="/js/wow.js"></script>
+    <script src="/js/skroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+    <!-- Notification Core -->
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script type="text/javascript" src="/js/toastr.js"></script>
+    <!-- JS Classes -->
+    <script type="text/javascript" src="/config/Config.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Request.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Location.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Notification.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Validation.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Render.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/CollectData.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Authentication.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Player.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Game.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/Util.js?v=41"></script>
+    <script type="text/javascript" src="/js/classes/LoginInit.js?v=41"></script>
+</body>
+
+</html>

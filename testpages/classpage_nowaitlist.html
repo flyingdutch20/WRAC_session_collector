@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type"    content="text/html;charset=utf-8">
+        <meta http-equiv="Content-Encoding" content="gzip">
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+        <meta name="viewport"              content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="description"           content="">
+        <meta name="author"                content="Appital-Venture @ Egypt">
+
+        <!-- Start Caching Meta Tags -->
+        <meta http-equiv="cache-control"   content="max-age=0">
+        <meta http-equiv="cache-control"   content="no-cache">
+        <meta http-equiv="expires"         content="0">
+        <meta http-equiv="expires"         content="Tue, 01 Jan 1980 1:00:00 GMT">
+        <meta http-equiv="pragma"          content="no-cache">
+        <!-- End Caching Meta Tags -->
+
+        <link rel='icon' href='/images/icon-class.png' type='image/x-icon'/>
+        <title>CLASSFIT</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200">
+        <link rel="stylesheet" href="/css/bootsrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/simple-sidebar.css">
+        <link rel="stylesheet" href="/css/sky-forms.css" media="all">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/jquery.ui.timepicker.css">
+        <link rel="stylesheet" href="/css/et/jquery-ui.css">
+        <link rel="stylesheet" href="/css/et/jquery-ui.structure.css">
+        <link rel="stylesheet" href="/css/et/jquery-ui.theme.css">
+        <link rel="stylesheet" href="/css/bootstrap-dialog.css">
+         <link rel="stylesheet" href="/css/styleinbox.css"> 
+        <link rel="stylesheet" href="/css/ball.css">
+        <link rel="stylesheet" href="/css/bootstrap-social.css">
+        <link rel="stylesheet" href="/css/animate.css">
+<!--        <link rel="stylesheet" href="/css/hover-min.css">-->
+        <link rel="stylesheet" href="/css/prettyPhoto.css">
+        <link rel="stylesheet" href="/css/mod.css">
+        <link rel="stylesheet" href="/css/style5.css">
+        <link rel="stylesheet" href="/css/resposnsive.css">
+        <link rel="stylesheet" href="/css/hamburgers.min.css">
+        <link rel="stylesheet" href="/css/side-bar.css">
+        <link rel="stylesheet" href="/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="/css/toastr.css">
+		<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+       	<!-- Scrollbar Custom CSS -->
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn t work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Add Google Ads In Home Page Only -->
+            </head>
+
+    <body style="clear: both;">
+        <!-- ******************** -->
+        <!-- PageWrapper -->
+        <div id="wrapper" class="toggled">
+            <link rel="stylesheet" href="/css/nav_custom.css">
+<!-- Start Navbar -->
+<div class="navbar-custom-section">
+    <nav class="navbar navbar-default navbar-fixed-top newNavbar" id="leNav">
+        <div class="container-fluid noPad">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index.php/c/Dashboard" style=""> <img id="logoPos" src="/images/ClassFit-Logo.png" alt="ClassFit" width="50" height="50" style="height:auto;"></a>
+                <ul class=" navbar-left nav-search hidden-lg hidden-md">
+                    <li>
+                        <input type="search" placeholder="Search for people and classes" id="SrchInpRes">
+                        <img src="/images/search-icon.png" width="" class="search-img" alt="">
+                        <span class="sr-icon"><img src="/images/searchBlack.png" alt="icon" width="100%" height="" style=""></span>
+                    </li>
+                </ul>
+            </div>
+ 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class=" navbar-left nav-search hidden-sm hidden-xs">
+                    <li>
+                        <input type="search" placeholder="Search for people and classes" id="SrchInp">
+                        <img src="/images/search-icon.png" width="" class="search-img" alt="">
+                        <span class="sr-icon"><img src="/images/searchBlack.png" alt="icon" width="100%" height="" style=""></span>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/index.php/c/AddClass?v=241">Setup a class</a>
+                    </li>
+                    <li>
+                        <a href="/index.php/c/MBMClasses?v=241">My classes</a>
+                    </li>
+                    <!-- <li>
+                        <a href="/index.php/c/Calendar?v=241">Calendar</a>
+                    </li> -->
+                    <li>
+                        <a href="/index.php/c/Tools?v=241">Tools</a>
+                    </li>
+                     <li>
+<!--                        <a href="/index.php/c/FrList?v=241">Contacts</a>-->
+                         <a href="/index.php/c/Contacts?v=241">Contacts</a>
+                    </li> 
+                    <li class="dropdown show-hover hidden-sm hidden-xs">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                        
+                            <div id="flipping-profile-image" data-toggle="tooltip" data-placement="right">
+                                <div class="flip_container">
+                                <div class="flip_back">
+                                            <input type="hidden" name="PlyGender" id="PlyGender" value="Male">
+                                            <img class="SideImg img-circle" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/male-user.jpg'" src="https://images.fastplayapp.com/images/upload/ply/d61b69c000be7dc03228f62ff4f44948.png">
+                                </div>
+<!--
+                                    <div class="flip">
+                                        <div class="flip_front">
+                                            <img class="SideImg img-circle" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/male-user.jpg'" src="/images/classfit-profile.png">
+                                        </div>
+                                        <div class="flip_back">
+                                            <input type="hidden" name="PlyGender" id="PlyGender" value="Male">
+                                            <img class="SideImg img-circle" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/male-user.jpg'" src="https://images.fastplayapp.com/images/upload/ply/d61b69c000be7dc03228f62ff4f44948.png">
+                                        </div>
+                                    </div>
+-->
+                                </div>
+                            </div>
+                                                    </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/index.php/c/Profile/8251?v=241">My profile</a>
+                            </li>
+                            <li>
+                                <a href="/index.php/c/Setting">Settings</a>
+                            </li>
+                            <li>
+                                <a href="/index.php/c/ViewAsPlayer">Change to attendee view</a>
+                            </li>
+                            <li>
+                                <a href="/index.php/c/Faq">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="/index.php/c/RenderFeed">Contact us</a>
+                            </li>
+                            <li>
+                                <a href="#" id="LogOut" title="Log Out" onclick="AuthObj.LogOut()">Log out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Responsive Links -->
+                    <li class="hidden-lg hidden-md">
+                        <a href="/index.php/c/Profile/8251?v=241">My profile</a>
+                    </li>
+                    <li class="hidden-lg hidden-md">
+                        <a href="/index.php/c/Setting">Settings</a>
+                    </li>
+                    <li class="hidden-lg hidden-md">
+                        <a href="/index.php/c/ViewAsPlayer">Change to attendee view</a>
+                    </li>
+                    <li class="hidden-lg hidden-md">
+                        <a href="/index.php/c/Faq">FAQ</a>
+                    </li>
+                    <li class="hidden-lg hidden-md">
+                        <a href="/index.php/c/RenderFeed">Contact us</a>
+                    </li>
+                    <li class="hidden-lg hidden-md">
+                        <a href="#" id="LogOut" title="Log Out" onclick="AuthObj.LogOut()">Log out</a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+</div>
+<!-- End Navbar -->
+<link href="/css/gmdata.css" rel="stylesheet">
+<!-- Class details  -->
+<div id="page-content" class="container-fluid">
+    <!-- Start Top Section -->
+    <section id="top-secrion">
+        <div class="row">
+            <div class="col-lg-8 col-md-6 col-xs-12">
+                <div class="game-details">
+                    <div class="game-img">
+                        <div class="circle-container">
+                            <div class="crop">
+                                <img class="event-img img-circle img-responsive" onerror="this.src='https://images.fastplayapp.com/images/upload/gm/Gm.png'" src="https://images.fastplayapp.com/images/upload/gm/3a865e8dbd35b577c8730f34ffa3b1cc.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-head col-md-9 col-sm-9 col-xs-12 padR">
+                        <h3>WRAC Mixed Ability Scaur Bank</h3>
+                                                <p class="decription ">WRAC Mixed Ability Training session from Scaur Bank. Meet at the playground. 400m efforts with Emma Coster</p>
+                                            </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12 marg-top btns-box">
+                <div class="center-btn col-xs-12">
+                                            <button data-toggle="modal" data-target="#GmRenewModal" class="btn btn-block btn-primary RenewGm " style=""  GmID = "129411" GmSTime="19:00:00" onclick="RenderObj.renewButtonsHandler(this)">Renew class</button></div>
+                                        <div class="col-xs-12 center-btn ">
+                                            <a class="btn btn-block btn-info gm-btn" style="" href="/index.php/c/ClassCheckIn/129411" >Check In</a>
+                                        </div><input type="text" id="oldReminderPeriod" value="" hidden/>            
+                <!-- Game Chat -->
+                                                                <!-- Game Report Issues -->
+                                <!-- Game Image Report Issues -->
+                            </div>
+        </div>
+    </section>
+    <!-- End Top Section -->
+    <!-- Start Info Section -->
+        <secton id="info">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="event-details gm-info">
+                    <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Activity:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR"> <span class="black">
+                                Other</span> </div>
+                    </div>
+                    <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Date:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR">
+                            <span class="black">
+                                Wednesday 22 July                             </span>
+                        </div>
+                    </div>
+                    <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Time:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR">
+                        
+
+                            <span class="black">
+                                7:00 PM  
+                                                            </span> 
+
+                        </div>
+                    </div>
+
+                    <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Duration:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR"> <span class="black">
+                                50 mins</span> </div>
+                    </div>
+
+
+                                        <div class="game-data">
+                                                <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Attendees:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR">
+                            <span class="black">
+                                5 / 5                            </span>
+                        </div>
+                                            </div>
+
+
+
+                    <div class="game-data">
+                        <!-- style="display:none" -->
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Age range:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR"> <span class="black">
+                                All ages</span> </div>
+                    </div>
+
+
+                                        <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Genders:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR"> <span class="black">
+                                All</span> </div>
+                    </div>
+                    <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Level:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR"> <span class="black">
+                                All levels</span> </div>
+                    </div>
+                    
+                                        <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Surface:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR"> <span class="black">
+                                Outdoors</span> </div>
+                    </div>
+                                        
+                    <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Cost:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR"> 
+                                                        <span class="black">Free</span>
+                                                    </div>
+                    </div>
+                                        
+                    
+                                        <div class="game-data">
+                        <div class="col-md-4 col-sm-3 noPad">
+                            <h2>Address:</h2>
+                        </div>
+                        <div class="col-md-8 col-sm-9 padR"> <span class="black">
+                                Scaur Bank, Linton Rd, Wetherby LS22 6SD, UK</span> </div>
+                    </div>
+                    
+                    
+                    
+           
+                    
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6 col-xs-12 noPad">
+                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
+                                            <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                        <div style="height:390px" class="panel panel-default event-details " id="locationMabPanel">
+                      
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <span>Map</span>
+                                        <!--<i class="fa fa-angle-up" aria-hidden="true"></i>-->
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <div id="map">
+                                        <!--<span class="text-address" style="display:none">Address:</span>-->
+                                        <!--											<span style="width: inherit;display:none">Scaur Bank, Linton Rd, Wetherby LS22 6SD, UK</span>-->
+                                        <div id="map-canvas"></div>
+                                    </div>
+                                </div>
+                            </div>
+                                                </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="showParticipants" id="showParticipants" value="1">
+                <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                                <div class="panel panel-default event-details">
+                            <div class="panel-heading part-tap" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <span>Participants</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active col-xs-6 padL"><a data-toggle="tab" href="#members">members</a></li>
+                                        <li class="col-xs-6 padR"><a data-toggle="tab" href="#waitinglist">waiting List</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <!-- Start Members Tap -->
+                                        <div id="members" class="tab-pane fade in active">
+                                            
+                                                        <div class="member" >
+                                                            <div class="circle-container">
+                                                                <div class="crop">
+                                                                    <img class="event-img img-circle img-responsive" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/female-user.jpg'" src="https://images.fastplayapp.com/images/upload/ply/female-user.jpg" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-9 padR">
+                                                                <h3>
+                                                                    <a href="/index.php/c/UserProfile?p=9315">Ruth Warren</a>
+                                                                </h3>
+                                                                <h5>
+                                                                            <img src="/images/female-gender-icon.png" class="hidden-lg hidden-md hidden-sm" style="width: 18px;height: 100%;margin-right: 5px;-webkit-filter: grayscale(100%);filter: grayscale(100%);" alt="icon">
+                                                                            <span class="text-span hidden-xs">Gender :</span>
+                                                                            <span class="text-span-info">Female</span>
+                                                                        </h5>
+                                                                <h5>
+                                                                                <span class="text-span hidden-xs">Location :</span>
+                                                                                    <img src="/images/location-icon.png" class="hidden-lg hidden-md hidden-sm" style="opacity: .54;width: 15px;height: 100%;margin-right: 5px;" alt="icon">
+                                                                                <span class="text-span-info">United Kingdom</span>
+                                                                            </h5>
+                                                            </div>
+                                                            <button class="hvr-buzz btn1 members-btn AbsentMem" style=" display: none; "  onclick="PlayerObj.FlagMember(this)" GmID ="129411" MemID="9315" AbsentState="absent"><i class="fa fa-sign-out" title="Flag member as absent" aria-hidden="true"></i></button>
+                                                        </div>
+                                                        <div class="member" >
+                                                            <div class="circle-container">
+                                                                <div class="crop">
+                                                                    <img class="event-img img-circle img-responsive" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/female-user.jpg'" src="https://images.fastplayapp.com/images/upload/ply/female-user.jpg" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-9 padR">
+                                                                <h3>
+                                                                    <a href="/index.php/c/UserProfile?p=9609">Emily Legg</a>
+                                                                </h3>
+                                                                <h5>
+                                                                            <img src="/images/female-gender-icon.png" class="hidden-lg hidden-md hidden-sm" style="width: 18px;height: 100%;margin-right: 5px;-webkit-filter: grayscale(100%);filter: grayscale(100%);" alt="icon">
+                                                                            <span class="text-span hidden-xs">Gender :</span>
+                                                                            <span class="text-span-info">Female</span>
+                                                                        </h5>
+                                                                <h5>
+                                                                                <span class="text-span hidden-xs">Location :</span>
+                                                                                    <img src="/images/location-icon.png" class="hidden-lg hidden-md hidden-sm" style="opacity: .54;width: 15px;height: 100%;margin-right: 5px;" alt="icon">
+                                                                                <span class="text-span-info">Wetherby, United Kingdom</span>
+                                                                            </h5>
+                                                            </div>
+                                                            <button class="hvr-buzz btn1 members-btn AbsentMem" style=" display: none; "  onclick="PlayerObj.FlagMember(this)" GmID ="129411" MemID="9609" AbsentState="absent"><i class="fa fa-sign-out" title="Flag member as absent" aria-hidden="true"></i></button>
+                                                        </div>
+                                                        <div class="member" >
+                                                            <div class="circle-container">
+                                                                <div class="crop">
+                                                                    <img class="event-img img-circle img-responsive" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/male-user.jpg'" src="https://images.fastplayapp.com/images/upload/ply/male-user.jpg" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-9 padR">
+                                                                <h3>
+                                                                    <a href="/index.php/c/UserProfile?p=10627">scott stonebridge</a>
+                                                                </h3>
+                                                                <h5>
+                                                                            <img src="/images/male-gender-icon.png" class="hidden-lg hidden-md hidden-sm" style="width: 18px;height: 100%;margin-right: 5px;-webkit-filter: grayscale(100%);filter: grayscale(100%);" alt="icon">
+                                                                            <span class="text-span hidden-xs">Gender :</span>
+                                                                            <span class="text-span-info">Male</span>
+                                                                        </h5>
+                                                                <h5>
+                                                                                <span class="text-span hidden-xs">Location :</span>
+                                                                                    <img src="/images/location-icon.png" class="hidden-lg hidden-md hidden-sm" style="opacity: .54;width: 15px;height: 100%;margin-right: 5px;" alt="icon">
+                                                                                <span class="text-span-info">YORK, United Kingdom</span>
+                                                                            </h5>
+                                                            </div>
+                                                            <button class="hvr-buzz btn1 members-btn AbsentMem" style=" display: none; "  onclick="PlayerObj.FlagMember(this)" GmID ="129411" MemID="10627" AbsentState="absent"><i class="fa fa-sign-out" title="Flag member as absent" aria-hidden="true"></i></button>
+                                                        </div>
+                                                        <div class="member" >
+                                                            <div class="circle-container">
+                                                                <div class="crop">
+                                                                    <img class="event-img img-circle img-responsive" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/male-user.jpg'" src="https://images.fastplayapp.com/images/upload/ply/male-user.jpg" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-9 padR">
+                                                                <h3>
+                                                                    <a href="/index.php/c/UserProfile?p=10587">Nick Wallhead</a>
+                                                                </h3>
+                                                                <h5>
+                                                                            <img src="/images/male-gender-icon.png" class="hidden-lg hidden-md hidden-sm" style="width: 18px;height: 100%;margin-right: 5px;-webkit-filter: grayscale(100%);filter: grayscale(100%);" alt="icon">
+                                                                            <span class="text-span hidden-xs">Gender :</span>
+                                                                            <span class="text-span-info">Male</span>
+                                                                        </h5>
+                                                                <h5>
+                                                                                <span class="text-span hidden-xs">Location :</span>
+                                                                                    <img src="/images/location-icon.png" class="hidden-lg hidden-md hidden-sm" style="opacity: .54;width: 15px;height: 100%;margin-right: 5px;" alt="icon">
+                                                                                <span class="text-span-info">boston spa, United Kingdom</span>
+                                                                            </h5>
+                                                            </div>
+                                                            <button class="hvr-buzz btn1 members-btn AbsentMem" style=" display: none; "  onclick="PlayerObj.FlagMember(this)" GmID ="129411" MemID="10587" AbsentState="absent"><i class="fa fa-sign-out" title="Flag member as absent" aria-hidden="true"></i></button>
+                                                        </div>
+                                                        <div class="member" >
+                                                            <div class="circle-container">
+                                                                <div class="crop">
+                                                                    <img class="event-img img-circle img-responsive" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/female-user.jpg'" src="https://images.fastplayapp.com/images/upload/ply/female-user.jpg" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-9 padR">
+                                                                <h3>
+                                                                    <a href="/index.php/c/UserProfile?p=9308">Amanda Spencer </a>
+                                                                </h3>
+                                                                <h5>
+                                                                            <img src="/images/female-gender-icon.png" class="hidden-lg hidden-md hidden-sm" style="width: 18px;height: 100%;margin-right: 5px;-webkit-filter: grayscale(100%);filter: grayscale(100%);" alt="icon">
+                                                                            <span class="text-span hidden-xs">Gender :</span>
+                                                                            <span class="text-span-info">Female</span>
+                                                                        </h5>
+                                                                <h5>
+                                                                                <span class="text-span hidden-xs">Location :</span>
+                                                                                    <img src="/images/location-icon.png" class="hidden-lg hidden-md hidden-sm" style="opacity: .54;width: 15px;height: 100%;margin-right: 5px;" alt="icon">
+                                                                                <span class="text-span-info">Leeds, United Kingdom</span>
+                                                                            </h5>
+                                                            </div>
+                                                            <button class="hvr-buzz btn1 members-btn AbsentMem" style=" display: none; "  onclick="PlayerObj.FlagMember(this)" GmID ="129411" MemID="9308" AbsentState="absent"><i class="fa fa-sign-out" title="Flag member as absent" aria-hidden="true"></i></button>
+                                                        </div>                                        </div>
+                                        <!-- End Members Tap -->
+
+                                        <!-- Start Waitinglast Tap -->
+                                        <div id="waitinglist" class="tab-pane fade">
+                                            
+                                                    <div class="members">
+                                                        <h3 class="text-center">Waiting list is empty!</h3>
+                                                    </div>                                        </div>
+                                        <!-- End Members Tap -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="panel panel-default event-details ">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="organiserTabBtn">
+                                                                                    <span>Class instructor</span>
+                                                                            </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div class="event-creator-image">
+                                        <div class="circle-container">
+                                            <div class="crop">
+                                                                                                                                                    <!-- Show Instructor Img -->
+                                                    <img class="event-img img-circle img-responsive" onerror="this.src='https://images.fastplayapp.com/images/upload/ply/ply.png'" src="https://images.fastplayapp.com/images/upload/ply/528c36aebff2ec71fad0771e8b9dd78c.png" />
+                                                                                            </div>
+                                        </div>
+
+                                                                                <div class="event-creator-sub">
+                                            
+                                                                                            <!-- Instructor Data Markup -->
+                                                <h3> Emma Coster </h3>
+                                                <div class="text-bio">
+                                                    <p class="inst_bio">Coach - Level 2</p>
+                                                                                                    </div>
+
+                                                <h4>
+                                                    from: <a href="/index.php/c/Profile/8251?showAdmin=true&v=241">WetherbyRunnersAC</a>
+                                                </h4>
+                                                                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </secton>
+</div>
+
+<!-- End event details -->
+<div id="GmRenewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Renew class</h4>
+            </div>
+            <div class="modal-body">
+                <form class="sky-form" id="GmRenewFrm" action="#" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <label class="input">
+                            <input type="text" class="GameDatePicker" placeholder="New class date" id="GmDate" name="GmDate" required value="" readonly="">
+                        </label>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-flex">
+                    <button type="button" class="btn btn-primary" id="GmRenewBtn">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Report Modal -->
+<div id="GmReportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Report game image</h4>
+            </div>
+            <div class="modal-body">
+                <form class="sky-form" id="GmReportFrm" action="/index.php/c/ReportGameImage" method="post">
+                    <fieldset>
+                        <div class="row">
+                            <section class="col-md-8">
+                                <center>
+                                    <h2>Report Data</h2>
+                                </center>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col-md-8">
+                                <label class="select">Select report reason
+                                    <select name="RepRes" id="RepRes" class="form-group" required>
+                                        <option value="0" disabled selected>Select report reason</option>
+                                        <option value="1">Reason 1</option>
+                                        <option value="2">Reason 2</option>
+                                        <option value="3">Reason 3</option>
+                                    </select>
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col-md-8">
+                                <label class="input">Leave us a report note
+                                    <textarea name="RepNote" id="RepNote" class="form-control" rows="3"></textarea>
+                                </label>
+                            </section>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-flex">
+                    <button type="button" class="btn btn-primary" id="GmReportBtn" onclick="GameObj.GmReportFn(129411)">Report</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remove Player Modal -->
+<div class="modal fade" id="RemoveModal" tabindex="-1" role="dialog" aria-labelledby="RemoveModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="RemoveModalLabel">One more question</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-block btn-primary" id="SubmitRemMem">Submit</button>
+                <button type="button" class="btn btn-block btn-danger" data-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+            <input type="hidden" name="RemMemID" id="RemMemID" value="0">
+            <input type="hidden" name="RemGmID" id="RemGmID" value="0">
+            <input type="hidden" name="OrgID" id="OrgID" value="0">
+        </div>
+    </div>
+</div>
+
+<!-- Reminder Modal -->
+<div class="modal fade" id="ReminderModal" tabindex="-1" role="dialog" aria-labelledby="ReminderModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ReminderModalLabel">Class reminder settings</h4>
+            </div>
+            <div class="modal-body" style="padding-top:0">
+                <div class="form-group">
+                    <label>
+                        <p class="reminderText">A reminder email is sent out 26 hours before the class begins.
+                            If you would like to add additional reminders please select the frequency below.
+                        </p>
+                    </label>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group  select">
+                                <div class="custom-select">
+                                    <select name="RemTime" id="RemTime" class="form-control" onchange="RenderObj.reminderTimeChange(this)" required >
+                                        <option selected disabled value="0">Select reminder frequency</option>
+                                    </select>
+                                    <!--<i class="glyphicon glyphicon-triangle-top"></i> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12 last-sec checkbox container2">
+                            <label id="save-one">
+                                <input type="checkbox" class="remind-state" name="RemindStat" id="RemindStat" onchange = "RenderObj.RemindStatChange(this)" value="" >                                <span class="checkmarkbox"></span>
+                                <span class="value-checkBox save-space"> Unsubscribe from all reminder emails for this class.</span>
+                            </label>
+                        </div>
+                    </div>
+                    <input type="text" id="oldRemindStat" value="" hidden=""/>
+                                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" disabled="true" id="RemindBtn" onclick="GameObj.RemindFn('129411')">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="GameObj.ClearReminderData()" style="">DISMISS</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add Guest Modal -->
+<div id="AddGuestModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="AddGuestLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="Guest_modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="AddGuestLabel">Add client</h4>
+            </div>
+            
+            <div class="modal-body">
+                <div class="client-cls">Adding a client manually overrides the normal registration process for your class. This contact will appear on your attendee list and take a space however no payment will be taken. If you wish for this client to pay, you will need to arrange for payment separately. However, add an existing client with a membership or class bundle that applies to this class, one class will be subtracted from their remaining classes.</div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group fnAdd">
+                            
+                            <input type="text" id="GuestOrg" value="8251" IsOrg="True" hidden="">
+                            <input type="text" id="GuestGmID" value="129411" hidden="">
+                            
+                            <label class="input sr-only" for="GstFName">First Name</label>
+                            <input placeholder="First name" name="GstFName" class=" ChkGst form-control ui-autocomplete-input ui-autocomplete-loading" maxlength="20" id="GstFName" value="" required />
+                            
+                            <div class="warning_message fr-warn" style="display: none;">
+                                <span class="warning-icon ">
+                                    <img src="/images/warning-icon.png" alt="warning-icon">
+                                </span>
+                                <span class="tooltip-message">
+                                    <span style=""></span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group lsAdd">
+                            <label class="input sr-only" for="GstLName">Last Name</label>
+                            <input placeholder="Last name" name="GstLName" class=" ChkGst form-control ui-autocomplete-input ui-autocomplete-loading" maxlength="20" id="GstLName" value="" required />
+                            <div class="warning_message .laWarn" style="display: none;">
+                                <span class="warning-icon ">
+                                    <img src="/images/warning-icon.png" alt="warning-icon">
+                                </span>
+                                <span class="tooltip-message">
+                                    <span style=""></span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group emailAdd">
+                            <label class="input sr-only" for="GstEmail">Email</label>
+                            <input type="email" placeholder="Email address" name="GstEmail" class="form-control ui-autocomplete-input ui-autocomplete-loading" id="GstEmail" value="" />
+                            <div class="warning_message" style="display: none;">
+                                <span class="warning-icon ">
+                                    <img src="/images/warning-icon.png" alt="warning-icon">
+                                </span>
+                                <span class="tooltip-message">
+                                    <span style=""></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GameObj.AddGstFn(129411)" style="">Add</button>
+                <button type="button" class="btn btn-danger" onclick="GameObj.ResetAddGstData()" data-dismiss="modal" style="">Discard</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Refund Policy / Drop-out Modal -->
+<div class="modal fade" id="refundDataModal" tabindex="-1" role="dialog" aria-labelledby="refundDataLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="refundDataLabel">Drop out policy</h4>
+            </div>
+            <div class="modal-body">
+                            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-block btn-danger" data-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" name="GmID" id="GmID" value="129411">
+<input type="hidden" name="IsOrg" id="IsOrg" value="True">
+<input type="hidden" name="IsMem" id="IsMem" value="">
+<input type="hidden" name="ISRecurr" id="ISRecurr" value="False">
+<input type="hidden" name="ParentState" id="ParentState" value="">
+<input type="hidden" name="IsStopRecurred" id="IsStopRecurred" value="">
+<input type="hidden" name="HasStopDays" id="HasStopDays" value="n">
+<input type="hidden" name="PlyID" id="PlyID" value="8251">
+<input type="hidden" name="GmLat" id="GmLat" value="53.9293349">
+<input type="hidden" name="GmLong" id="GmLong" value="-1.395554">
+<input type="hidden" name="redirectedAction" id="redirectedAction" value="">
+
+<!--Login Modal -->
+<div id="LoginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="LoginLabel">Sign up or log in</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <form id="LoginFrm">
+                            <div class="col-xs-12">
+                                <label class="input col-xs-3" for="Email">Email</label>
+                                <input type="text" name="Email" class="col-xs-9 ChkLoginFrm" id="Email" value="" />
+                                <div class="warning_message" style="display: none;">
+                                    <span class="warning-icon ">
+                                        <img src="/images/warning-icon.png" alt="warning-icon">
+                                    </span>
+                                    <span class="tooltip-message">
+                                        <span style=""></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <label class="input col-xs-3" for="Pass">Password</label>
+                                <input type="password" name="Pass" class="col-xs-9 ChkLoginFrm" id="Pass" value="" />
+                                <div class="warning_message" style="display: none;">
+                                    <span class="warning-icon ">
+                                        <img src="/images/warning-icon.png" alt="warning-icon">
+                                    </span>
+                                    <span class="tooltip-message">
+                                        <span style=""></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 text-center">
+                                <a href="/index.php/c/ForgetPass" class="modal-opener Forgot-Password">FORGOT PASSWORD?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <input type="hidden" name="ReqGmID" id="ReqGmID" value="">
+                <input type="hidden" name="ReqFrID" id="ReqFrID" value="">
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-primary" id="LoginBtn" onclick="AuthObj.prepareLogin()" style="display: block;width: 100%;">Login</button>
+                </div>
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-primary" id="RegBtn" onclick="AuthObj.UsrRegFn()" style="display: block;width: 100%;">Sign up</button>
+                </div>
+<!--
+                <div class="col-xs-4 noPad">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="display: block;width: 100%;">Close</button>
+                </div>
+-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Join Game Modal -->
+<div id="JoinGmModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="joinGmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="joinGmModalLabel">Confirmation message</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="JoinGmBtn" onclick="UtilObj.handleJoinGame()">Join</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Join Game Modal -->
+
+<!-- Recurr Modal -->
+<div id="RecurModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Regular invites</h4>
+            </div>
+            <div class="modal-body">
+                            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="SaveBtn" onclick="UtilObj.handleRecur()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Recurr Modal -->
+
+<!-- Questionnaire Modal -->
+<div class="modal fade" id="QuestionModal" tabindex="-1" role="dialog" aria-labelledby="QuesModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="QuesModalLabel">Questionnaire</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-block btn-primary" id="SubmitQues" onclick="ValidateObj.SubmitQuesElems()">Save</button>
+                <button type="button" class="btn btn-block btn-danger" data-dismiss="modal" aria-label="Close">DISMISS</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Questionnaire Modal -->
+
+<input type='hidden' name='CurrPlyID' id='CurrPlyID' value='8251'>
+<input type='hidden' name='CurrPlyName' id='CurrPlyName' value='Sessions Wetherby Runners AC'>
+<input type="hidden" name="CurrUserImg" id="CurrUserImg" value="https://images.fastplayapp.com/images/upload/ply/d61b69c000be7dc03228f62ff4f44948.png">
+<input type='hidden' name='CurrPlyDevID' id='CurrPlyDevID' value=''>
+<input type="hidden" name="ChkPlyAge" id="ChkPlyAge" value="57">
+<input type="hidden" name="ChkPlyGdr" id="ChkPlyGdr" value="Male">
+                                            <input type="hidden" name="stripe_CardName" id="stripe_CardName" value="">
+                            <input type="hidden" name="stripe_CardLast4" id="stripe_CardLast4" value="">
+                                                
+<div class="se-pre-con" style="display: none;">
+    <img style="width:200px" src="/images/New_classfit_gif_2.gif">
+</div>
+
+<style>
+    .overlay {
+			position: fixed;
+			width: 100vw;
+			height: 100vh;
+			background: rgba(0, 0, 0, 0.7);
+			z-index: 1040;
+			display: none;
+		}
+	</style>
+</div>
+<div class="overlay"></div>
+<input type="hidden" name="footerFrID" id="footerFrID" value="0">
+
+<!-- UI Dependencies -->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/form/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/css/et/jquery-ui.js"></script>
+<script src="/js/jquery.endless-scroll.min.js"></script>
+<script src="/css/bootsrap/bootstrap.min.js"></script>
+<script src="/js/jquery.ui.timepicker.min.js"></script>
+<script src="/js/bootstrap-dialog.min.js"></script>
+<script src="/js/jquery.prettyPhoto.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/skroll.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+<!-- Notification Dependencies -->
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script src="/js/toastr.min.js"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<!-- JS Classes -->
+<script type="text/javascript" src="/config/Config.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Request.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Location.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Notification.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Validation.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Render.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/CollectData.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Authentication.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Player.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Game.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Util.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/Payment.js?v=241"></script>
+<script type="text/javascript" src="/js/classes/LoggedInit.js?v=241"></script>
+
+</body>
+</html><script src="https://js.stripe.com/v3/"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNiWm-ip_bfamXdzMl-PPK9k0YHJ-MIhs&v=3.exp"></script>
+<script type="text/Javascript">
+    UtilObj.GameDetailsMap();
+    RenderObj.UIRender();
+    RenderObj.TimeDatePicker();
+    RenderObj.gmDetailsUIHandler();
+    RenderObj.GameModalsHandler();
+    RenderObj.RemoveModalHandler();
+    RenderObj.ReminderModalHandler();
+    RenderObj.gmDetailsOnloadHandler();
+    RenderObj.instructorBioHandler();
+    
+    RenderObj.GuestSearch();
+    GameObj.handleRedirect();
+    $(document).ready(function(){
+        var btnBHeight = $('.btns-box').height();
+        var newBtnBHeight = btnBHeight-47 ;
+        var descHeight = (newBtnBHeight < 35  )? 75:newBtnBHeight;
+        $('.decription').css('height', descHeight+'px');
+    });
+</script>
