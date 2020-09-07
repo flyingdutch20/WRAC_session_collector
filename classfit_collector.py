@@ -141,20 +141,23 @@ def scrape_classfit():
 def set_receivers():
     # set the receivers for the email; if juniors, reduce the list
     senior_receivers = ["andreanormington29@gmail.com",
-        "emmacoster@hotmail.co.uk",
-        "ianmlegg@gmail.com",
-        "pauljwindle@yahoo.co.uk",
-        "daveyrichard@doctors.org.uk",
-        "david_yeomans@tiscali.co.uk",
-        "callumdraper@yahoo.co.uk",
-        "pmlandd@gmail.com",
-        "garyothick@gmail.com"]
+                        "emmacoster@hotmail.co.uk",
+                        "ianmlegg@gmail.com",
+                        "pauljwindle@yahoo.co.uk",
+                        "daveyrichard@doctors.org.uk",
+                        "david_yeomans@tiscali.co.uk",
+                        "callumdraper@yahoo.co.uk",
+                        "pmlandd@gmail.com",
+                        "garyothick@gmail.com",
+                        "mail@chrisplews.co.uk",
+                        "fiona.knapton@live.co.uk",
+                        "richard.bell@communisis.com"]
     junior_receivers = ["andreanormington29@gmail.com",
-        "emmacoster@hotmail.co.uk",
-        "ianmlegg@gmail.com",
-        "pauljwindle@yahoo.co.uk",
-        "daveyrichard@doctors.org.uk",
-        "callumdraper@yahoo.co.uk"]
+                        "emmacoster@hotmail.co.uk",
+                        "ianmlegg@gmail.com",
+                        "pauljwindle@yahoo.co.uk",
+                        "daveyrichard@doctors.org.uk",
+                        "callumdraper@yahoo.co.uk"]
     return junior_receivers if args.user == 'juniors' else senior_receivers
 
 def create_and_send_mail():
