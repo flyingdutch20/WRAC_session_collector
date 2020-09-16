@@ -151,7 +151,7 @@ def set_receivers():
                         "garyothick@gmail.com",
                         "mail@chrisplews.co.uk",
                         "fiona.knapton@live.co.uk",
-                        "richard.bell@communisis.com"
+                        "richard.bell@communisis.com",
                         "fiveeurochamps@gmail.com"]
     junior_receivers = ["andreanormington29@gmail.com",
                         "emmacoster@hotmail.co.uk",
