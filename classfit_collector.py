@@ -159,6 +159,9 @@ def set_receivers():
                         "pauljwindle@yahoo.co.uk",
                         "daveyrichard@doctors.org.uk",
                         "callumdraper@yahoo.co.uk"]
+    wellbeing_receivers = ["andreanormington29@gmail.com",
+                        "originaljamman@gmail.com",
+                        "ianmlegg@gmail.com"]
     return junior_receivers if args.user == 'juniors' else senior_receivers
 
 def create_and_send_mail():
