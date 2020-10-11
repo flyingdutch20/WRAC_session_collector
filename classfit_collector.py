@@ -47,7 +47,7 @@ def get_args():
 def scrape_classfit():
     # login to ClassFit, collect the session details, output to pdf
     options = Options()
-    options.headless = True
+#    options.headless = True
     driver = webdriver.Chrome(executable_path="./drivers/chromedriver.exe", options=options)
 #    driver = webdriver.Firefox(executable_path="./drivers/geckodriver.exe")
 
