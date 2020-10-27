@@ -92,27 +92,30 @@ def scrape_classfit():
         out = session[1] + ' - ' + session[0]
         driver.get("https://classfit.com" + session[0])
         soup_session = BeautifulSoup(driver.page_source, features="html.parser")
-        session_details = soup_session.find('div', {'class': 'event-details'}).find_all('span')
-        session_date = session_details[1].text.strip()
-        split_date = session_date.split()
-        strip_date = ' '.join(split_date[1:])
-        if not strip_date == date:
-            break
-        session_time = session_details[2].text.strip()
-        session_trainer = soup_session.find('div', {'class': 'event-creator-sub'}).find('h3').text
-        session_description = soup_session.find('div', {'class': 'game-head'}).find('p').text
-        session_members = soup_session.find('div', {'id': 'members'}).find_all('h3')
-        session_waitlist = soup_session.find('div', {'id': 'waitinglist'}).find_all('h3')
-        pdf.add_page()
-        pdf.set_font('Arial', 'B', 16)
-        pdf.cell(0, 10, session_date + ' - ' + session_time + ' - ' + session_trainer, 0, 1)
-        pdf.cell(0, 10, session[1], 0, 1)
-        pdf.set_font('Arial', '', 12)
-        pdf.multi_cell(0, 7, session_description, 0, 1)
-        pdf.cell(0, 7, '', 0, 1)
-        pdf.set_font('Arial', 'B', 12)
-        pdf.cell(0, 7, 'Bookings:', 0, 1)
-        pdf.set_font('Arial', '', 12)
+        try:
+            session_details = soup_session.find('div', {'class': 'event-details'}).find_all('span')
+            session_date = session_details[1].text.strip()
+            split_date = session_date.split()
+            strip_date = ' '.join(split_date[1:])
+            if not strip_date == date:
+                break
+            session_time = session_details[2].text.strip()
+            session_trainer = soup_session.find('div', {'class': 'event-creator-sub'}).find('h3').text
+            session_description = soup_session.find('div', {'class': 'game-head'}).find('p').text
+            session_members = soup_session.find('div', {'id': 'members'}).find_all('h3')
+            session_waitlist = soup_session.find('div', {'id': 'waitinglist'}).find_all('h3')
+            pdf.add_page()
+            pdf.set_font('Arial', 'B', 16)
+            pdf.cell(0, 10, session_date + ' - ' + session_time + ' - ' + session_trainer, 0, 1)
+            pdf.cell(0, 10, session[1], 0, 1)
+            pdf.set_font('Arial', '', 12)
+            pdf.multi_cell(0, 7, session_description, 0, 1)
+            pdf.cell(0, 7, '', 0, 1)
+            pdf.set_font('Arial', 'B', 12)
+            pdf.cell(0, 7, 'Bookings:', 0, 1)
+            pdf.set_font('Arial', '', 12)
+        except:
+            None
         for member in session_members:
             try:
                 name = member.find('a').text
