@@ -1,7 +1,6 @@
-beautifulsoup4==4.9.1
+beautifulsoup4==4.9.3
 bs4==0.0.1
 fpdf==1.7.2
-pywin32-ctypes==0.2.0
 selenium==3.141.0
 soupsieve==2.0.1
-urllib3==1.25.9
+urllib3==1.25.11
