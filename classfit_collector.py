@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
-from fpdf import FPDF
 import argparse
 import os
 import email, smtplib, ssl
@@ -12,6 +11,9 @@ from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+import fpdf
+fpdf.set_global("SYSTEM_TTFONTS", os.path.join(os.path.dirname(__file__),'fonts'))
 
 # --------------------------------------------------
 def get_args():
@@ -87,7 +89,12 @@ def scrape_classfit():
         print(session_url + ' - ' + session_name)
 
     print("Collecting individual classes and creating PDF ...")
-    pdf = FPDF()
+#    pdf = FPDF()
+    pdf = fpdf.FPDF()
+    pdf.add_font("NotoSans", style="", fname="NotoSans-Regular.ttf", uni=True)
+    pdf.add_font("NotoSans", style="B", fname="NotoSans-Bold.ttf", uni=True)
+    pdf.add_font("NotoSans", style="I", fname="NotoSans-Italic.ttf", uni=True)
+    pdf.add_font("NotoSans", style="BI", fname="NotoSans-BoldItalic.ttf", uni=True)
     for session in sessions.items():
         out = session[1] + ' - ' + session[0]
         driver.get("https://classfit.com" + session[0])
@@ -105,15 +112,15 @@ def scrape_classfit():
             session_members = soup_session.find('div', {'id': 'members'}).find_all('h3')
             session_waitlist = soup_session.find('div', {'id': 'waitinglist'}).find_all('h3')
             pdf.add_page()
-            pdf.set_font('Arial', 'B', 16)
+            pdf.set_font('NotoSans', 'B', 16)
             pdf.cell(0, 10, session_date + ' - ' + session_time + ' - ' + session_trainer, 0, 1)
             pdf.cell(0, 10, session[1], 0, 1)
-            pdf.set_font('Arial', '', 12)
+            pdf.set_font('NotoSans', '', 12)
             pdf.multi_cell(0, 7, session_description, 0, 1)
             pdf.cell(0, 7, '', 0, 1)
-            pdf.set_font('Arial', 'B', 12)
+            pdf.set_font('NotoSans', 'B', 12)
             pdf.cell(0, 7, 'Bookings:', 0, 1)
-            pdf.set_font('Arial', '', 12)
+            pdf.set_font('NotoSans', '', 12)
         except:
             None
         for member in session_members:
@@ -123,9 +130,9 @@ def scrape_classfit():
                 name = 'No members have booked yet'
             pdf.cell(0, 7, name, 0, 1)
         pdf.cell(0, 7, '', 0, 1)
-        pdf.set_font('Arial', 'B', 12)
+        pdf.set_font('NotoSans', 'B', 12)
         pdf.cell(0, 7, 'Waiting list:', 0, 1)
-        pdf.set_font('Arial', '', 12)
+        pdf.set_font('NotoSans', '', 12)
         for member in session_waitlist:
             try:
                 name = member.find('a').text
@@ -137,6 +144,7 @@ def scrape_classfit():
         os.mkdir('./output')
     global my_file
     my_file = date.replace(" ", "_") + ".pdf"
+#    pdf.output(dest='S').encode('latin-1', 'ignore')
     pdf.output('./output/' + my_file, 'F')
 
     driver.quit()
@@ -153,7 +161,7 @@ def set_receivers():
                         "pmlandd@gmail.com",
                         "garyothick@gmail.com",
                         "mail@chrisplews.co.uk",
-                        "fiona.knapton@live.co.uk",
+#                        "fiona.knapton@live.co.uk",
                         "richard.bell@communisis.com",
                         "fiveeurochamps@gmail.com"]
     junior_receivers = ["andreanormington29@gmail.com",
