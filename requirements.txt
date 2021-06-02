@@ -3,4 +3,4 @@ bs4==0.0.1
 fpdf==1.7.2
 selenium==3.141.0
 soupsieve==2.0.1
-urllib3==1.25.11
+urllib3==1.26.5
